@@ -2,7 +2,7 @@ resources:
   - name: webhook
     type: IncomingWebhook
     configuration:
-      webhookName: webhook
+      webhookName: divijawebhook
       
   - name: release_bundle
     type: ReleaseBundle
@@ -38,7 +38,7 @@ resources:
 
 
 pipelines:
-  - name: dummy_build
+  - name: divija_build
     steps:
     - name: ExtractFileName
       type: Bash
