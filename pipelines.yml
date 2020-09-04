@@ -34,7 +34,7 @@ resources:
     type: Aql
     configuration:
       sourceArtifactory: artifactory
-      query: items.find({"$and":[{"$or":[{"repo":{"$eq":"deb"}},{"repo":{"$eq":"libs-release-local"}}]},{"$or":[{"name":{"$match":"${app_name}-*-${app_version}*"}},{"name":{"$match":"${app_name}_${app_version}_*"}}]}]})
+      query: items.find({"$and":[{"$or":[{"repo":{"$eq":"generic-local"}},{"repo":{"$eq":"generic-test"}}]},{"$or":[{"name":{"$match":"${app_name}-*-${app_version}*"}},{"name":{"$match":"${app_name}_${app_version}_*"}}]}]})
 
 
 pipelines:
