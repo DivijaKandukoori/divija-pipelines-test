@@ -1,5 +1,5 @@
 resources:
-  - name: webhook
+  - name: divijawebhook
     type: IncomingWebhook
     configuration:
       webhookName: divijawebhook
@@ -30,7 +30,7 @@ resources:
       countryCodes:
         - "CN" 
         
-  - name: aql
+  - name: aql_test
     type: Aql
     configuration:
       sourceArtifactory: artifactory
@@ -68,7 +68,7 @@ pipelines:
         sign: false
         description: "Application deb distribution"
         inputResources:
-          - name: aql
+          - name: aql_test
             trigger: true
         outputResources:
           - name: release_bundle_test
