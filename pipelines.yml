@@ -49,8 +49,8 @@ pipelines:
           - name: aql_test
       execution:
           onExecute:
-            - set_payload divijawebhook "$res_webhook_payload"
-            - echo "$res_webhook_payload" | jq '.' > payload.json
+            - set_payload divijawebhook "$res_divijawebhook_payload"
+            - echo "$res_divijawebhook_payload" | jq '.' > payload.json
             - set_payload divijawebhook payload.json --file
             - cat payload.json
             - read_json payload.json "data.name"
