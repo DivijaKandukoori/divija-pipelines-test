@@ -44,9 +44,9 @@ pipelines:
       type: Bash
       configuration:
         inputResources:
-          - name: webhook
+          - name: divijawebhook
         outputResources:
-          - name: aql
+          - name: aql_test
       execution:
           onExecute:
             - set_payload webhook "$res_webhook_payload"
