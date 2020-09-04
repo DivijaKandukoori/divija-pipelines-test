@@ -4,7 +4,7 @@ resources:
     configuration:
       webhookName: divijawebhook
       
-  - name: release_bundle
+  - name: release_bundle_test
     type: ReleaseBundle
     configuration:
       sourceDistribution: clouddistribution
@@ -12,7 +12,7 @@ resources:
       version: ${app_version}
 
   # Signed version of the same release bundle
-  - name: signed_bundle
+  - name: signed_bundle_test
     type: ReleaseBundle
     configuration:
       sourceDistribution: clouddistribution
@@ -20,7 +20,7 @@ resources:
       version: ${app_version}
 
   # Distribution rules
-  - name: distribution_rules
+  - name: distribution_rules_test
     type: DistributionRule
     configuration:
       sourceDistribution: clouddistribution
@@ -59,7 +59,7 @@ pipelines:
             - add_run_variables app_name=$(echo $distribution_filename | awk -F_ '{print $1}')
             - add_run_variables app_version=$(echo $distribution_filename | awk -F_ '{print $2}')
             
-    - name: bundle
+    - name: releasebundle
       type: CreateReleaseBundle
       configuration:
         releaseBundleName: ${app_name}
@@ -71,7 +71,7 @@ pipelines:
           - name: aql
             trigger: true
         outputResources:
-          - name: release_bundle
+          - name: release_bundle_test
         releaseNotes:
           syntax: markdown
           content: |
@@ -79,18 +79,18 @@ pipelines:
               * Bullet
               * Points
               
-    - name: sign
+    - name: signreleasebundle
       type: SignReleaseBundle
       configuration:
         inputResources:
-          - name: release_bundle
+          - name: release_bundle_test
         outputResources:
-          - name: signed_bundle
+          - name: signed_bundle_test
 
-    - name: distribute
+    - name: distributereleasebundle
       type: DistributeReleaseBundle
       configuration:
         dryRun: false
         inputResources:
-          - name: signed_bundle
-          - name: distribution_rules
+          - name: signed_bundle_test
+          - name: distribution_rules_test
