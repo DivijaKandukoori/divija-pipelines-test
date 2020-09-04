@@ -2,12 +2,12 @@ resources:
   - name: webhook
     type: IncomingWebhook
     configuration:
-      webhookName: debDistribute
+      webhookName: webhook
       
   - name: release_bundle
     type: ReleaseBundle
     configuration:
-      sourceDistribution: StDistribution
+      sourceDistribution: clouddistribution
       name: ${app_name}
       version: ${app_version}
 
@@ -15,7 +15,7 @@ resources:
   - name: signed_bundle
     type: ReleaseBundle
     configuration:
-      sourceDistribution: StDistribution
+      sourceDistribution: clouddistribution
       name: ${app_name}
       version: ${app_version}
 
@@ -23,7 +23,7 @@ resources:
   - name: distribution_rules
     type: DistributionRule
     configuration:
-      sourceDistribution: StDistribution
+      sourceDistribution: clouddistribution
       serviceName: "*"
       siteName: "*"
       cityName: "*"
@@ -33,12 +33,12 @@ resources:
   - name: aql
     type: Aql
     configuration:
-      sourceArtifactory: StArtifactory
+      sourceArtifactory: artifactory
       query: items.find({"$and":[{"$or":[{"repo":{"$eq":"deb"}},{"repo":{"$eq":"libs-release-local"}}]},{"$or":[{"name":{"$match":"${app_name}-*-${app_version}*"}},{"name":{"$match":"${app_name}_${app_version}_*"}}]}]})
 
 
 pipelines:
-  - name: CreateDistribution
+  - name: dummy_build
     steps:
     - name: ExtractFileName
       type: Bash
