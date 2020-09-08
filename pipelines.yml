@@ -28,7 +28,7 @@ resources:
       siteName: "*"
       cityName: "*"
       countryCodes:
-        - "CN" 
+        - "US" 
         
   - name: aql_test
     type: Aql
