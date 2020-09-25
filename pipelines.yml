@@ -58,6 +58,8 @@ pipelines:
             - echo $distribution_filename
             - add_run_variables app_name=$(echo $distribution_filename | awk -F_ '{print $1}')
             - add_run_variables app_version=$(echo $distribution_filename | awk -F_ '{print $2}')
+            - echo $app_name 	
+            - echo $app_version
             
     - name: releasebundle
       type: CreateReleaseBundle
